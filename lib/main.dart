@@ -1,12 +1,11 @@
-import 'package:foodie/time_now.dart';
 import 'package:flutter/material.dart';
-
+import 'package:foodie/start_screen.dart';
 
 void main() {
   runApp(
     const MaterialApp(
       home: Scaffold(
-        body: TimeNow()
+        body: StartScreen()
       ),
     ),
   );

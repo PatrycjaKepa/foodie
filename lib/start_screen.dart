@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:foodie/style_text.dart';
+import 'package:foodie/time_now.dart';
 
-// class StartScreen extends StatelessWidget{
-// StartScreen({super.key});
+class StartScreen extends StatelessWidget{
+const StartScreen({super.key});
 
-// // @override
-// //   Widget build(context){
-// //     return 
-// //   }
-// }
+@override
+  Widget build(BuildContext context){
+    return Center(
+      child: Column(
+        children:[
+          TimeNow(),
+          StyledText("działa")
+        ],
+      ),
+    );
+  }
+}
