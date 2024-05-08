@@ -12,7 +12,7 @@ class StyledText extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(
-          color: Colors.white, 
+          color: Color.fromARGB(255, 216, 19, 19), 
           fontSize: 28
           ),
         ),

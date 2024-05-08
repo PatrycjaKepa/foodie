@@ -12,6 +12,8 @@ class TimeNow extends StatelessWidget{
 
       if(now.hour >= 5 && now.hour < 12) {
         return Container(
+            width: 100,
+            height: 100,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -30,6 +32,8 @@ class TimeNow extends StatelessWidget{
       if(now.hour >= 12 && now.hour < 18){
         return 
               Container(
+                width: 100,
+                height: 100,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -47,6 +51,8 @@ class TimeNow extends StatelessWidget{
 
       if(now.hour >= 18 && now.hour < 21){
         return Container(
+          width: 100,
+          height: 100,
           decoration: const BoxDecoration(gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 240, 214, 137), 
@@ -62,6 +68,8 @@ class TimeNow extends StatelessWidget{
 
         if(now.hour >= 21 && now.hour > 5){
         return Container(
+          width: 100,
+          height: 100,
           decoration: const BoxDecoration(gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 9, 9, 24), 

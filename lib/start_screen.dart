@@ -8,13 +8,10 @@ const StartScreen({super.key});
 
 @override
   Widget build(BuildContext context){
-    return Center(
-      child: Column(
-        children:[
-          TimeNow(),
-          StyledText("działa")
-        ],
-      ),
-    );
+    return Column(children: [
+      TimeNow(),
+      StyledText("działa")
+    ],);
+    
   }
 }
