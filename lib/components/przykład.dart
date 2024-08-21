@@ -3,17 +3,23 @@ import 'package:foodie/components/new_element_list.dart';
 import 'package:foodie/models/recipe_list.dart';
 import 'package:foodie/reusable/time_now.dart';
 
-class CookBookPage extends StatefulWidget {
-CookBookPage({super.key});
+class PP extends StatefulWidget {
+PP({super.key});
 
   @override
-  State<CookBookPage> createState() => _CookBookPageState();
+  State<PP> createState() => _PPState();
 }
 
-class _CookBookPageState extends State<CookBookPage> {
+class _PPState extends State<PP> {
   final todosList = ToDo.todoList();
   List<ToDo>_foundToDo = [];
   final _todoController = TextEditingController();
+
+  @override
+  void initState() {
+    _foundToDo = todosList;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

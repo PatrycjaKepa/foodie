@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foodie/routes/provider.dart';
-import 'package:foodie/views/cook_book.dart';
 import 'package:foodie/views/home.dart';
-import 'package:foodie/views/login.dart';
+import 'package:foodie/views/recipe.dart';
 import 'package:foodie/views/shopping_list.dart';
 
 class MainScreen extends ConsumerWidget {
@@ -12,13 +11,13 @@ class MainScreen extends ConsumerWidget {
   @override
   Widget build (BuildContext context, WidgetRef ref) {
     final bodies = [
-      const Center(
+      Center(
         child: HomePage(),
       ),
       const Center(
-        child: CookBookPage(),
+        child: RecipeView(),
       ),
-      const Center(
+      Center(
         child: ShoppingList(),
       ),
     ];
