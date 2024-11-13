@@ -1,5 +1,3 @@
-import 'package:foodie/models/shopping_list_title.dart';
-
 class User {
   String login;
   String email;

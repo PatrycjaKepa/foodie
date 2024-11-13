@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foodie/routes/provider.dart';
+import 'package:foodie/routesAndOthers/provider.dart';
+import 'package:foodie/cookBookPage/cook_book.dart';
 import 'package:foodie/views/home.dart';
-import 'package:foodie/views/recipe.dart';
-import 'package:foodie/views/shopping_list.dart';
+import 'package:foodie/shoppingList/shopping_list.dart';
 
-class MainScreen extends ConsumerWidget {
-  const MainScreen ({super.key});
+class BottomBar extends ConsumerWidget {
+  const BottomBar ({super.key});
 
   @override
   Widget build (BuildContext context, WidgetRef ref) {
     final bodies = [
-      Center(
+      const Center(
         child: HomePage(),
       ),
       const Center(
-        child: RecipeView(),
+        child: CookBookPage(),
       ),
-      Center(
+      const Center(
         child: ShoppingList(),
       ),
     ];
 
     final indexBottomNavbar = ref.watch(indexBottomNavbarProvider);
     return Scaffold(
-      
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: indexBottomNavbar,
           onTap: (value) {
@@ -32,8 +31,7 @@ class MainScreen extends ConsumerWidget {
           },
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.menu_book_rounded), label: 'Przepisy'),
+            BottomNavigationBarItem(icon: Icon(Icons.menu_book_rounded), label: 'Przepisy'),
             BottomNavigationBarItem(icon: Icon(Icons.list_alt_rounded), label: 'Zakupy'),
           ],
         ),

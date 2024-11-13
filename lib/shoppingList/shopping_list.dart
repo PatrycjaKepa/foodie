@@ -1,16 +1,14 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:foodie/components/new_element_list.dart';
-import 'package:foodie/components/new_item_shopping_list.dart';
+import 'package:foodie/shoppingList/new_item_shopping_list.dart';
 import 'package:foodie/main.dart';
-import 'package:foodie/reusable/time_now.dart';
+import 'package:foodie/routesAndOthers/time_now.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/shopping_list_title.dart';
+import 'shopping_list_title.dart';
 
 class ShoppingList extends StatefulWidget {
-ShoppingList({super.key});
+const ShoppingList({super.key});
 
   @override
   State<ShoppingList> createState() => _ShoppingListState();
@@ -32,12 +30,11 @@ class _ShoppingListState extends State<ShoppingList> {
           'accept': 'application/json',
           'authorization': ACTIVE_USER.getAuthenticationKey(),
           },
-        body: json.encode({'title': title, 'isDone': done}));
-
-        if(res.statusCode == 200) {
-          print('d');
-        }
-        print(res.statusCode);
+        body: json.encode({'title': title, 'isDone': done}),
+    );
+    if(res.statusCode != 200) {
+      throw Exception('Error posting item: ${res.statusCode}');
+    }
   }
 
   Future activeList() async {
@@ -67,10 +64,8 @@ class _ShoppingListState extends State<ShoppingList> {
           'authorization': ACTIVE_USER.getAuthenticationKey(),
         });
 
-    if (res.statusCode == 200) {
-      print('Item deleted successfully');
-    } else {
-      print('Error: ${res.statusCode}');
+    if (res.statusCode != 200) {
+      throw Exception('Error: ${res.statusCode}');
     }
   }
 
@@ -87,16 +82,16 @@ class _ShoppingListState extends State<ShoppingList> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: Stack(
           children: [
-            TimeNow(),
+            const TimeNow(),
             Container(
               width: double.infinity,
-              margin: EdgeInsets.only(top: 110),
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              decoration: BoxDecoration(
+              margin: const EdgeInsets.only(top: 110),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
@@ -106,10 +101,10 @@ class _ShoppingListState extends State<ShoppingList> {
                 children: [Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
+                        padding: EdgeInsets.only(bottom: 15),
                         child: Text('Lista zakupów',
                         style: TextStyle(
                           fontSize: 30,
@@ -132,16 +127,16 @@ class _ShoppingListState extends State<ShoppingList> {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: const EdgeInsets.only(top: 20),
                 child: Row(
                   children: [
                     Expanded(
                       child: Container(
-                        margin: EdgeInsets.only(bottom: 20, right: 20, left: 20),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        margin: const EdgeInsets.only(bottom: 20, right: 20, left: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          boxShadow: [BoxShadow(
+                          boxShadow: const [BoxShadow(
                             color: Colors.grey,
                             offset: Offset(0.0, 0.0),
                             blurRadius: 10.0,
@@ -151,7 +146,7 @@ class _ShoppingListState extends State<ShoppingList> {
                         ),
                         child: TextField(
                           controller: _shoppingController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Dodaj',
                             border: InputBorder.none,
                           ),
@@ -159,12 +154,17 @@ class _ShoppingListState extends State<ShoppingList> {
                       ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(bottom: 20, right: 20),
+                        margin: const EdgeInsets.only(bottom: 20, right: 20),
                         child: ElevatedButton(
                           onPressed: (){
                             _addToDoItem(_shoppingController.text);
                             sendPost();
-                          }, 
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            minimumSize: const Size(60, 60),
+                            elevation: 0,
+                          ), 
                           child: 
                           Text(
                             '+', 
@@ -173,11 +173,6 @@ class _ShoppingListState extends State<ShoppingList> {
                             color: Colors.blue[100]
                             ),
                             ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            minimumSize: Size(60, 60),
-                            elevation: 0,
-                          ),
                           ),
                       )
                   ],

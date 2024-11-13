@@ -1,9 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:foodie/main.dart';
-import 'package:foodie/models/user.dart';
-import 'package:foodie/reusable/time_now.dart';
+import 'package:foodie/user/user.dart';
+import 'package:foodie/routesAndOthers/time_now.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -37,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
         body: json.encode({'email': user.email, 'password': user.password}));
     if (res.statusCode == 200) {
       setState(() {
-        context.go('/mainscreen');
+        context.go('/bottomBar');
       });
     } else {
       ACTIVE_USER.removeAuthenticationData();
@@ -45,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
         visible = true;
       });
     }
-    return print(res.statusCode);
   }
 
   @override
@@ -53,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Center(
         child: Stack(children: [
-          TimeNow(),
+          const TimeNow(),
           Container(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 70),
@@ -70,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                     _header(context),
                     Visibility(
                       visible: visible,
-                      child: Text('test', style: TextStyle(color: Colors.red),),
+                      child: const Text('login lub hasło jest niepoprawne', style: TextStyle(color: Colors.red),),
                     ),
                     Form(
                       key: _formKey,
@@ -145,15 +143,14 @@ class _LoginPageState extends State<LoginPage> {
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     login();
-                                    // context.go('/mainscreen');
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  shape: StadiumBorder(),
-                                  padding: EdgeInsets.symmetric(vertical: 16),
+                                  shape: const StadiumBorder(),
+                                  padding: const EdgeInsets.symmetric(vertical: 16),
                                   // shadowColor: Colors.transparent,
                                   backgroundColor:
-                                      Color.fromARGB(255, 144, 213, 255),
+                                      const Color.fromARGB(255, 144, 213, 255),
                                 ),
                                 child: const Text(
                                   "Zaloguj się",

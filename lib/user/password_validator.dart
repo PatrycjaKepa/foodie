@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PasswordValidator extends StatefulWidget {
+  const PasswordValidator({super.key});
+
 
   @override
   State<PasswordValidator> createState() => _PasswordValidatorState();
@@ -8,10 +10,10 @@ class PasswordValidator extends StatefulWidget {
 
   class _PasswordValidatorState extends State<PasswordValidator> { 
 
-    bool _isValid = false; 
+    final bool _isValid = false; 
   String _errorMessage = ''; 
 
-  TextEditingController _passwordController = TextEditingController(); 
+  final TextEditingController _passwordController = TextEditingController(); 
   
   
   @override 
@@ -20,14 +22,14 @@ class PasswordValidator extends StatefulWidget {
       body: Column(
         children: [
           _isValid 
-                ? Text( 
+                ? const Text( 
                     'Password is valid!', 
                     style: TextStyle(color: Colors.green), 
                   ) 
                 : Text( 
                     'Password is not valid!\n'
                     '• $_errorMessage', 
-                    style: TextStyle(color: Colors.red), 
+                    style: const TextStyle(color: Colors.red), 
                   ), 
         ],),
         );
